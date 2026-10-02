@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Agregar canción - MusicFlix</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estilos.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>MusicFlix</h1>
+
+    <nav>
+
+        <a href="{{ url_for('inicio') }}">
+            Inicio
+        </a>
+
+        <a href="{{ url_for('mis_canciones') }}">
+            Mis canciones
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Cerrar sesión
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+
+    <div class="formulario">
+
+        <h1>Agregar canción</h1>
+
+
+        <form
+            action="{{ url_for('guardar') }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+
+            <label>
+                Título
+            </label>
+
+            <input
+                type="text"
+                name="titulo"
+                required
+            >
+
+
+            <label>
+                Artista
+            </label>
+
+            <input
+                type="text"
+                name="artista"
+                required
+            >
+
+
+            <label>
+                Álbum
+            </label>
+
+            <input
+                type="text"
+                name="album"
+            >
+
+
+            <label>
+                Género
+            </label>
+
+            <input
+                type="text"
+                name="genero"
+            >
+
+
+            <label>
+                Año
+            </label>
+
+            <input
+                type="number"
+                name="anio"
+            >
+
+
+            <label>
+                Duración en segundos
+            </label>
+
+            <input
+                type="number"
+                name="duracion"
+            >
+
+
+            <label>
+                Calificación
+            </label>
+
+            <input
+                type="number"
+                name="calificacion"
+                step="0.1"
+                min="0"
+                max="10"
+            >
+
+
+            <label>
+                URL de imagen
+            </label>
+
+            <input
+                type="text"
+                name="imagen"
+                placeholder="https://..."
+            >
+
+
+            <label>
+                Archivo MP3
+            </label>
+
+            <input
+                type="file"
+                name="audio"
+                accept=".mp3,audio/mpeg"
+                required
+            >
+
+
+            <button type="submit">
+                Agregar canción
+            </button>
+
+
+        </form>
+
+
+        <div class="link">
+
+            <a href="{{ url_for('mis_canciones') }}">
+                Ver mis canciones
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+<footer>
+    <p>© 2026 MusicFlix. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+
+</html>

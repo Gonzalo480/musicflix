@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MusicFlix</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilos.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>MusicFlix</h1>
+
+        <nav>
+
+            <a href="{{ url_for('inicio') }}">
+                Inicio
+            </a>
+
+
+            {% if session.get("usuario") %}
+
+                <span>
+                    Hola, {{ session["usuario"] }}
+                </span>
+
+                <a href="{{ url_for('agregar') }}">
+                    Agregar canción
+                </a>
+
+                <a href="{{ url_for('mis_canciones') }}">
+                    Mis canciones
+                </a>
+
+                <a href="{{ url_for('logout') }}">
+                    Cerrar sesión
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('login') }}">
+                    Iniciar sesión
+                </a>
+
+                <a href="{{ url_for('registro') }}">
+                    Crear cuenta
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==========================================
+         MENSAJES
+         ========================================== -->
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+
+        {% if mensajes %}
+
+            {% for categoria, mensaje in mensajes %}
+
+                <div class="mensaje {{ categoria }}">
+                    {{ mensaje }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <main>
+
+        <h2>
+            Catálogo de música
+        </h2>
+
+
+        <div class="peliculas">
+
+            {% for cancion in canciones %}
+
+                <div class="pelicula">
+
+
+                    <img
+                        src="{{ cancion['imagen'] }}"
+                        alt="{{ cancion['titulo'] }}"
+                    >
+
+
+                    <h2>
+                        {{ cancion['titulo'] }}
+                    </h2>
+
+
+                    <p>
+                        {{ cancion['artista'] }}
+                    </p>
+
+
+                    <p>
+                        {{ cancion['genero'] }}
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('cancion', id=cancion['id']) }}"
+                    >
+                        Ver detalles
+                    </a>
+
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+
+    <!-- ==========================================
+         PIE DE PAGINA
+         ========================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 MusicFlix. Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+
+</body>
+
+</html>

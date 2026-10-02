@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Crear cuenta - MusicFlix</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilos.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>MusicFlix</h1>
+
+    <nav>
+
+        <a href="{{ url_for('inicio') }}">
+            Inicio
+        </a>
+
+        <a href="{{ url_for('login') }}">
+            Iniciar sesión
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+
+    <div class="formulario">
+
+
+        <h1>
+            Crear cuenta
+        </h1>
+
+
+        <form
+            action="{{ url_for('registrar') }}"
+            method="POST"
+        >
+
+
+            <label>
+                Usuario
+            </label>
+
+            <input
+                type="text"
+                name="usuario"
+                required
+            >
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                required
+            >
+
+
+            <label>
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                name="contrasena"
+                required
+            >
+
+
+            <button type="submit">
+                Crear cuenta
+            </button>
+
+
+        </form>
+
+
+        <div class="link">
+
+            ¿Ya tenés una cuenta?
+
+            <a href="{{ url_for('login') }}">
+                Iniciar sesión
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+<footer>
+    <p>© 2026 MusicFlix. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+
+</html>
