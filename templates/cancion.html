@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ cancion['titulo'] }} - MusicFlix</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilos.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <h1>MusicFlix</h1>
+
+        <nav>
+
+            <a href="{{ url_for('inicio') }}">
+                Inicio
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="pelicula">
+
+
+            <img
+                src="{{ cancion['imagen'] }}"
+                alt="{{ cancion['titulo'] }}"
+            >
+
+
+            <h1>
+                {{ cancion['titulo'] }}
+            </h1>
+
+
+            <h2>
+                {{ cancion['artista'] }}
+            </h2>
+
+
+            <p>
+                <strong>Álbum:</strong>
+                {{ cancion['album'] }}
+            </p>
+
+
+            <p>
+                <strong>Género:</strong>
+                {{ cancion['genero'] }}
+            </p>
+
+
+            <p>
+                <strong>Año:</strong>
+                {{ cancion['anio'] }}
+            </p>
+
+
+            <p>
+                <strong>Duración:</strong>
+                {{ cancion['duracion'] }} segundos
+            </p>
+
+
+            <p>
+                <strong>Calificación:</strong>
+                {{ cancion['calificacion'] }}
+            </p>
+
+
+            <br>
+
+
+            <a
+                href="{{ url_for('reproducir', id=cancion['id']) }}"
+            >
+                ▶ Reproducir canción
+            </a>
+
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 MusicFlix. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

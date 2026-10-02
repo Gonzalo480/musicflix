@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mis canciones - MusicFlix</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estilos.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>MusicFlix</h1>
+
+    <nav>
+
+        <a href="{{ url_for('inicio') }}">
+            Inicio
+        </a>
+
+        <a href="{{ url_for('agregar') }}">
+            Agregar canción
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Cerrar sesión
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <h2>
+        Mis canciones
+    </h2>
+
+
+    {% if canciones %}
+
+
+        <div class="peliculas">
+
+
+            {% for cancion in canciones %}
+
+
+                <div class="pelicula">
+
+
+                    <img
+                        src="{{ cancion['imagen'] }}"
+                        alt="{{ cancion['titulo'] }}"
+                    >
+
+
+                    <h2>
+                        {{ cancion['titulo'] }}
+                    </h2>
+
+
+                    <p>
+                        {{ cancion['artista'] }}
+                    </p>
+
+
+                    <p>
+                        {{ cancion['genero'] }}
+                    </p>
+
+
+                    <a href="{{ url_for('cancion', id=cancion['id']) }}">
+                        Ver detalles
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('eliminar', id=cancion['id']) }}"
+                        onclick="return confirm('¿Seguro que querés eliminar esta canción?');"
+                        style="background-color: #e53935; color: white;"
+                    >
+                        Eliminar
+                    </a>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="formulario">
+
+            <h2>
+                Todavía no tenés canciones.
+            </h2>
+
+            <br>
+
+            <a href="{{ url_for('agregar') }}">
+                Agregar mi primera canción
+            </a>
+
+        </div>
+
+
+    {% endif %}
+
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+<footer>
+    <p>© 2026 MusicFlix. Todos los derechos reservados.</p>
+</footer>
+
+
+</body>
+
+</html>

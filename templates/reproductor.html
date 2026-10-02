@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ cancion['titulo'] }} - MusicFlix</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilos.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         ENCABEZADO
+         ========================================== -->
+
+    <header>
+
+        <h1>MusicFlix</h1>
+
+        <nav>
+
+            <a href="{{ url_for('inicio') }}">
+                Inicio
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Cerrar sesión
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==========================================
+         REPRODUCTOR
+         ========================================== -->
+
+    <main>
+
+        <div class="reproductor">
+
+
+            <h1>
+                {{ cancion['titulo'] }}
+            </h1>
+
+
+            <h2>
+                {{ cancion['artista'] }}
+            </h2>
+
+
+            <!-- ======================================
+                 IMAGEN
+                 ====================================== -->
+
+            <img
+                src="{{ cancion['imagen'] }}"
+                alt="{{ cancion['titulo'] }}"
+                width="300"
+            >
+
+
+            <br>
+            <br>
+
+
+            <!-- ======================================
+                 REPRODUCTOR DE AUDIO
+                 ====================================== -->
+
+            <audio controls autoplay>
+
+                <source
+                    src="{{ url_for('static', filename=cancion['audio']) }}"
+                    type="audio/mpeg"
+                >
+
+                Tu navegador no puede reproducir este audio.
+
+            </audio>
+
+
+            <!-- ======================================
+                 INFORMACIÓN
+                 ====================================== -->
+
+            <div class="info-reproductor">
+
+                <p>
+                    <strong>Artista:</strong>
+                    {{ cancion['artista'] }}
+                </p>
+
+                <p>
+                    <strong>Álbum:</strong>
+                    {{ cancion['album'] }}
+                </p>
+
+                <p>
+                    <strong>Género:</strong>
+                    {{ cancion['genero'] }}
+                </p>
+
+                <p>
+                    <strong>Año:</strong>
+                    {{ cancion['anio'] }}
+                </p>
+
+                <p>
+                    <strong>Duración:</strong>
+                    {{ cancion['duracion'] }} segundos
+                </p>
+
+                <p>
+                    <strong>Calificación:</strong>
+                    {{ cancion['calificacion'] }}
+                </p>
+
+            </div>
+
+
+            <br>
+
+
+            <a href="{{ url_for('cancion', id=cancion['id']) }}">
+                ← Volver a la canción
+            </a>
+
+
+        </div>
+
+    </main>
+
+
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+    <footer>
+        <p>© 2026 MusicFlix. Todos los derechos reservados.</p>
+    </footer>
+    
+</body>
+
+</html>
